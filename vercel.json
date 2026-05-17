@@ -1,0 +1,6 @@
+{
+  "buildCommand": "pnpm build",
+  "outputDirectory": "build/client",
+  "framework": "react-router",
+  "installCommand": "pnpm install --ignore-scripts"
+}
