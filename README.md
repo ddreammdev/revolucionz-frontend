@@ -1,87 +1,87 @@
-# Welcome to React Router!
+# Revolutionz 🌿
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Tienda online de suplementos nutricionales y productos de salud premium.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+## ✨ Características
 
-## Features
+- **Diseño Moderno** - Interfaz visualmente atractiva con soporte para tema claro/oscuro
+- **Navegación Intuitiva** - Sidebars interactivos para menú, carrito y cuenta de usuario
+- **Catálogo de Productos** - Exhibición de suplementos con precios, descripciones y beneficios
+- **Carrito de Compras** - Sistema de gestión del carrito de compras
+- **Búsqueda Predictiva** - Búsqueda inteligente de productos
+- **Experiencia Smooth** - Desplazamiento fluido con Lenis
+- **Totalmente Responsivo** - Optimizado para dispositivos móviles y escritorio
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+## 🛠️ Tecnologías
 
-## Getting Started
+- **React Router 7** - Framework web moderno
+- **TypeScript** - Tipado estático
+- **Tailwind CSS 4** - Estilos con utility-first
+- **Lucide React** - Iconos
+- **Lenis** - Smooth scrolling
 
-### Installation
+## 🚀 Getting Started
 
-Install the dependencies:
-
-```bash
-npm install
-```
-
-### Development
-
-Start the development server with HMR:
+### Instalación
 
 ```bash
-npm run dev
+pnpm install
 ```
 
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
+### Desarrollo
 
 ```bash
-npm run build
+pnpm run dev
 ```
 
-## Deployment
+La aplicación estará disponible en `http://localhost:5173`
 
-### Docker Deployment
-
-To build and run using Docker:
+### Producción
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+pnpm run build
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+### Despliegue
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
+El proyecto está configurado para desplegarse en Vercel:
 
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+```bash
+vercel deploy
 ```
 
-## Styling
+## 📁 Estructura
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+```
+app/
+├── assets/          # Imágenes y recursos estáticos
+├── components/     # Componentes React
+│   ├── layout/     # Header, Footer, PageLayout
+│   ├── product/    # Catálogo y vista de productos
+│   └── ui/         # Componentes UI (Aside, Carousel, etc.)
+├── lib/            # Utilidades y contexto
+├── routes/         # Rutas de la aplicación
+└── styles/         # Estilos globales
+```
+
+## 🎨 Personalización
+
+### Temas
+
+El proyecto soporta tema claro y oscuro. El toggle está disponible en el header.
+
+### Colores
+
+Los colores están definidos en `app/styles/app.css` usando variables CSS:
+
+- Primary: `#2ed1a3` (Verde esmeralda)
+- Accent: `#f59e0b` (Ambar)
+- Dark: `#0a0f1a` (Negro azulado)
+
+## 📄 Licencia
+
+MIT License
 
 ---
 
-Built with ❤️ using React Router.
+Construido con ❤️ para una experiencia de compra premium.
