@@ -6,12 +6,16 @@ import {
   Scripts,
   ScrollRestoration,
 } from "react-router";
+import React, { useEffect, useId } from "react";
+import { Search, ShoppingCart, Menu, User, Package, Heart, CreditCard, MapPin, HelpCircle, ChevronRight, LogIn, Home, Pill, Package2, BookOpen, Phone, FlaskConical, Coffee, Sparkles } from "lucide-react";
+import { Link } from "react-router";
 
 import type { Route } from "./+types/root";
 import { SmoothScrollProvider } from "./lib/smooth-scroll";
+import { Aside } from "~/components/ui";
 import "./app.css";
 
-export function links(): Route.LinksFunction {
+export function links(): Route.LinkDescriptors {
   return [
     { rel: "preconnect", href: "https://fonts.googleapis.com" },
     {
@@ -60,6 +64,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
             pointer-events: none;
           }
         `}} />
+        <title>Revolución Z</title>
       </head>
       <body>
         {children}
@@ -71,10 +76,122 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
+  useEffect(() => {
+    document.documentElement.classList.add('theme-ready');
+  }, []);
+
   return (
     <SmoothScrollProvider>
-      <Outlet />
+      <Aside.Provider>
+        <SearchAside />
+        <CartAside />
+        <MobileMenuAside />
+        <AccountAside />
+        <Outlet />
+      </Aside.Provider>
     </SmoothScrollProvider>
+  );
+}
+
+function CartAside() {
+  return (
+    <Aside type="cart" heading={<><ShoppingCart size={22} /> CARRITO</>}>
+      <div className="cart-empty-state">
+        <ShoppingCart size={48} strokeWidth={1} />
+        <p>Tu carrito está vacío</p>
+        <Link to="/" className="btn btn-primary">Ver Productos</Link>
+      </div>
+    </Aside>
+  );
+}
+
+function SearchAside() {
+  const queriesDatalistId = useId();
+  return (
+    <Aside type="search" heading={<><Search size={18} style={{marginRight: 8}} /> BUSCAR</>}>
+      <div className="predictive-search">
+        <div className="predictive-search-form">
+          <input
+            name="q"
+            placeholder="Buscar productos..."
+            type="search"
+            list={queriesDatalistId}
+          />
+        </div>
+        <div className="search-suggestions">
+          <p className="search-empty-msg">Escribe para buscar productos</p>
+        </div>
+      </div>
+    </Aside>
+  );
+}
+
+function MobileMenuAside() {
+  const navItems = [
+    { label: 'Inicio', href: '/', icon: <Home size={22} /> },
+    { label: 'Productos', href: '/products', icon: <Pill size={22} /> },
+    { label: 'Colecciones', href: '/collections', icon: <Package2 size={22} /> },
+    { label: 'Suplementos', href: '/collections/suplementos', icon: <FlaskConical size={22} /> },
+    { label: 'Nutrición', href: '/collections/nutricion', icon: <Coffee size={22} /> },
+    { label: 'Cuidado Personal', href: '/collections/cuidado-personal', icon: <Sparkles size={22} /> },
+    { label: 'Blog', href: '/blogs', icon: <BookOpen size={22} /> },
+    { label: 'Contacto', href: '/pages/contact', icon: <Phone size={22} /> },
+  ];
+
+  return (
+    <Aside type="mobile" heading={<><Menu size={22} /> MENU</>}>
+      <div className="mobile-menu-content">
+        <nav className="mobile-menu-nav">
+          {navItems.map((item) => (
+            <Link key={item.label} to={item.href} className="mobile-menu-item">
+              <span className="mobile-menu-icon">{item.icon}</span>
+              <span className="mobile-menu-label">{item.label}</span>
+              <ChevronRight size={22} className="mobile-menu-arrow" />
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </Aside>
+  );
+}
+
+function AccountAside() {
+  const accountLinks = [
+    { icon: <User size={22} />, label: 'Mi Perfil', href: '/account/profile' },
+    { icon: <Package size={22} />, label: 'Mis Pedidos', href: '/account/orders' },
+    { icon: <Heart size={22} />, label: 'Lista de Deseos', href: '/account/wishlist' },
+    { icon: <MapPin size={22} />, label: 'Direcciones', href: '/account/addresses' },
+    { icon: <CreditCard size={22} />, label: 'Métodos de Pago', href: '/account/payment' },
+    { icon: <HelpCircle size={22} />, label: 'Ayuda y Soporte', href: '/pages/contact' },
+  ];
+
+  return (
+    <Aside type="account" heading={<><User size={22} /> MI CUENTA</>}>
+      <div className="account-aside-content">
+        <div className="account-user-section">
+          <div className="account-avatar">
+            <User size={32} />
+          </div>
+          <div className="account-user-info">
+            <p>Inicia sesión para más opciones</p>
+          </div>
+          <button className="btn btn-primary account-login-btn">
+            <LogIn size={16} />
+            Iniciar Sesión
+          </button>
+        </div>
+
+        <nav className="account-nav-menu">
+          {accountLinks.map((link) => (
+            <Link key={link.label} to={link.href} className="account-nav-item">
+              <span className="account-nav-icon">{link.icon}</span>
+              <span>{link.label}</span>
+              <ChevronRight size={22} className="account-nav-arrow" />
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </Aside>
   );
 }
 

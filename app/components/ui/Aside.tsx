@@ -66,7 +66,7 @@ export function Aside({
         <header>
           <h3 id={id}>{heading}</h3>
           <button className="close reset" onClick={close} aria-label="Close">
-            <X size={16} />
+            <X size={22} />
           </button>
         </header>
         <main>{children}</main>

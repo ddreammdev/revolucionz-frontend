@@ -30,6 +30,13 @@ export function Carousel() {
 
   return (
     <section className="carousel-section">
+      <button
+        className="carousel-btn carousel-btn-prev"
+        onClick={prev}
+        aria-label="Previous"
+      >
+        <ChevronLeft size={24} />
+      </button>
       <div className="carousel-viewport">
         <div
           className="carousel-track"
@@ -41,21 +48,14 @@ export function Carousel() {
             </div>
           ))}
         </div>
-        <button
-          className="carousel-btn carousel-btn-prev"
-          onClick={prev}
-          aria-label="Previous"
-        >
-          <ChevronLeft size={32} />
-        </button>
-        <button
-          className="carousel-btn carousel-btn-next"
-          onClick={next}
-          aria-label="Next"
-        >
-          <ChevronRight size={32} />
-        </button>
       </div>
+      <button
+        className="carousel-btn carousel-btn-next"
+        onClick={next}
+        aria-label="Next"
+      >
+        <ChevronRight size={24} />
+      </button>
       <div className="carousel-dots">
         {slides.map((_, i) => (
           <button

@@ -3,8 +3,26 @@ import logoSvg from '~/assets/logo-revolucionz.svg';
 import {useLenis} from '~/lib/smooth-scroll';
 
 export function Footer() {
-  const lenis = useLenis();
+  const {lenis} = useLenis();
   const year = new Date().getFullYear();
+
+  const handleScrollToTop = () => {
+    if (lenis) {
+      lenis.scrollTo(0, {immediate: false});
+    } else {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  };
+
+  const handleScrollToProducts = () => {
+    const productsSection = document.getElementById('productos');
+    if (lenis && productsSection) {
+      lenis.scrollTo(productsSection, {immediate: false});
+    } else if (productsSection) {
+      productsSection.scrollIntoView({behavior: 'smooth'});
+    }
+  };
+
   return (
     <footer className="footer">
       <div className="footer-inner">
@@ -13,16 +31,10 @@ export function Footer() {
         </div>
         <div className="footer-col">
           <span className="footer-col-title">Enlaces</span>
-          <Link
-            to="/"
-            onClick={() => lenis?.scrollTo(0)}
-          >
+          <button className="reset" onClick={handleScrollToTop}>
             Inicio
-          </Link>
-          <button
-            className="reset"
-            onClick={() => lenis?.scrollTo('#productos')}
-          >
+          </button>
+          <button className="reset" onClick={handleScrollToProducts}>
             Productos
           </button>
         </div>

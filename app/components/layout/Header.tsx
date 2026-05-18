@@ -57,13 +57,6 @@ export function Header() {
   return (
     <header ref={headerRef} className={`header${hidden ? ' header-hidden' : ''}`}>
       <div className="header-inner">
-        <button 
-          className="header-icon-btn reset" 
-          onClick={() => open('mobile')}
-          aria-label="Abrir menú"
-        >
-          <Menu size={24} strokeWidth={2} />
-        </button>
         <NavLink prefetch="intent" to="/" className="header-logo" end>
           <img src={logoSvg} alt="Revolucionz" />
         </NavLink>
@@ -97,6 +90,13 @@ export function Header() {
             <User size={22} strokeWidth={2} />
           </button>
           <ThemeToggle />
+          <button 
+            className="header-icon-btn reset" 
+            onClick={() => open('mobile')}
+            aria-label="Abrir menú"
+          >
+            <Menu size={22} strokeWidth={2} />
+          </button>
         </nav>
       </div>
     </header>
